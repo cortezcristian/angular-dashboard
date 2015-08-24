@@ -24,4 +24,6 @@ Acceder a [http://localhost:8080/#/](http://localhost:8080/#/)
 $ npm install && bower install
 $ grunt serve
 ```
+Acceder a [http://localhost:9000/#/](http://localhost:9000/#/)
 
+Importante: Es necesario haber descargado el repo [angular-mock-rest](https://github.com/cortezcristian/angular-mock-rest) para poder transacionar con [http://localhost:9001/](http://localhost:9001/proveedores)
