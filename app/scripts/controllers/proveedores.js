@@ -8,7 +8,7 @@
  * Controller of the angularDashboardApp
  */
 angular.module('angularDashboardApp')
-  .controller('ProveedoresCtrl', function($scope, $http){
+  .controller('ProveedoresCtrl', function($scope, $http, $rootScope){
         console.log("cargo proveedores controller");
         $scope.proveedores = [];
 
