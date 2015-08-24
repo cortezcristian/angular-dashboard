@@ -7,12 +7,27 @@
  * # calc
  */
 angular.module('angularDashboardApp')
-  .directive('calc', function () {
-    return {
-      template: '<div></div>',
-      restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the calc directive');
-      }
-    };
-  });
+  .directive('calc', function(){
+        return {
+            restrict: 'AE',
+            scope: {},
+            templateUrl: 'views/calc-partial.html',
+            link: function postLink($scope, element, attrs) {
+                var num = '';
+
+                $scope.tecla = function(t){
+                    switch(t){
+                        case '=':
+                            num = eval(num);
+                            break;
+                        case 'C':
+                            num = '';
+                            break;
+                        default:
+                            num+=t;
+                    }
+                    $scope.resultado = num;
+                }
+            }
+        };
+    });
