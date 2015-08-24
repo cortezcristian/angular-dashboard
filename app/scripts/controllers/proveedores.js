@@ -13,7 +13,7 @@ angular.module('angularDashboardApp')
         $scope.proveedores = [];
 
         $scope.cargarProveedores = function(prov) {
-            $http.post('http://localhost:9001/proveedores', {
+            $http.post($rootScope.config.service_url+'/proveedores', {
                 nombre: prov.nombre.$modelValue
             })
             .success(function(res){
@@ -24,7 +24,7 @@ angular.module('angularDashboardApp')
         }
 
         $scope.borrarProveedor = function(idProv) {
-            $http.delete('http://localhost:9001/proveedores/'+idProv)
+            $http.delete($rootScope.config.service_url+'/proveedores/'+idProv)
             .success(function(res){
                 console.log("creado");
                 $scope.listarProveedores();
@@ -33,7 +33,7 @@ angular.module('angularDashboardApp')
         }
 
         $scope.listarProveedores = function(){
-            $http.get('http://localhost:9001/proveedores').then(function(res){
+            $http.get($rootScope.config.service_url+'/proveedores').then(function(res){
                 console.log("success!", res);
                 $scope.proveedores = res.data;
             }, function(){

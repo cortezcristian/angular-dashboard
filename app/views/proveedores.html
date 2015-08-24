@@ -1,48 +1,74 @@
-<div class="preloader" ng-show="layout.loading">
-    <i class="fa fa-refresh fa-5 fa-spin"></i>
-</div>
-<div ng-show="!layout.loading">
-    <h2>Proveedores</h2>
-    <input type="text" placeholder="Buscar..." ng-model="buscar" />
+<div class="row">
+  <div class="col-md-12">
+    <div class="preloader" ng-show="layout.loading">
+        <i class="fa fa-refresh fa-5 fa-spin"></i>
+    </div>
+    <div ng-show="!layout.loading">
+      <div class="row">
+        <div class="col-md-8">
+          <h2 style="maring:0">Proveedores</h2>
+        </div>
+        <div class="col-md-4">
+          <input type="text" placeholder="Buscar..." ng-model="buscar" />
+        </div>
+      </div>
 
-    <h3>Cargar</h3>
+      <div class="row">
+        <div class="col-md-12">
 
-    <form name="nuevoprov" ng-submit="cargarProveedores(nuevoprov)" novalidate>
+          <!-- insert form starts -->
+          <h3>Cargar</h3>
 
-        <div class="form-group" ng-class="{'has-error': nuevoprov.nombre.$invalid && nuevoprov.$dirty }">
-        <input type="text" name="nombre" ng-model="s" class="form-control" placeholder="Nombre..."  minlength="3" required />
-        <div class="validation text-danger"
-               ng-messages="nuevoprov.nombre.$error"
-               ng-if="nuevoprov.nombre.$touched || nuevoprov.$submitted">
-              <div ng-message="required" ng-show="nuevoprov.nombre.$error.required">Este campo es requerido</div>
-              <div ng-message="minlength" ng-show="nuevoprov.nombre.$error.minlength">El nombre debe tener al menos 3 caracteres</div>
+          <form name="nuevoprov" ng-submit="cargarProveedores(nuevoprov)" novalidate>
+
+              <div class="form-group" ng-class="{'has-error': nuevoprov.nombre.$invalid && nuevoprov.$dirty }">
+              <input type="text" name="nombre" ng-model="s" class="form-control" placeholder="Nombre..."  minlength="3" required />
+              <div class="validation text-danger"
+                     ng-messages="nuevoprov.nombre.$error"
+                     ng-if="nuevoprov.nombre.$touched || nuevoprov.$submitted">
+                    <div ng-message="required" ng-show="nuevoprov.nombre.$error.required">Este campo es requerido</div>
+                    <div ng-message="minlength" ng-show="nuevoprov.nombre.$error.minlength">El nombre debe tener al menos 3 caracteres</div>
+
+              </div>
+              </div>
+
+              <button class="btn btn-primary" type="submit" ng-disabled="nuevoprov.$invalid">Cargar</button>
+          </form>
+          <pre >{{nuevoprov.nombre | json}}</pre>
+          <!-- insert form ends -->
+
+          <!-- list starts -->
+          <table class="table">
+              <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Opciones</th>
+              </tr>
+              <tr ng-repeat="p in proveedores | filter: buscar">
+                  <td>{{p.id}}</td>
+                  <td>{{p.nombre}}</td>
+                  <td>{{p.apellido}}</td>
+                  <td>
+                      Editar |
+                      <button ng-click="borrarProveedor(p.id)">
+                          <i class="fa fa-trash-o"></i>
+                          Borrar
+                      </button>
+                  </td>
+              </tr>
+          </table>
+          <!-- list ends -->
 
         </div>
-        </div>
+      </div>
 
-        <button class="btn btn-primary" type="submit" ng-disabled="nuevoprov.$invalid">Cargar</button>
-    </form>
-    <pre >{{nuevoprov.nombre | json}}</pre>
 
-    <table class="table">
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Opciones</th>
-        </tr>
-        <tr ng-repeat="p in proveedores | filter: buscar">
-            <td>{{p.id}}</td>
-            <td>{{p.nombre}}</td>
-            <td>{{p.apellido}}</td>
-            <td>
-                Editar |
-                <button ng-click="borrarProveedor(p.id)">
-                    <i class="fa fa-trash-o"></i>
-                    Borrar
-                </button>
-            </td>
-        </tr>
-    </table>
+
+    </div>
+  </div>
 </div>
+
+
+
 
