@@ -11,7 +11,6 @@ $ yo angular
 
 ### Windows
 ```bash
-$ npm install && bower install
 $ npm install -g http-server
 $ cd app && bower install
 $ http-server
