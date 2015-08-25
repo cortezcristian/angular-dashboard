@@ -19,15 +19,26 @@ angular.module('angularDashboardApp')
             .success(function(res){
                 console.log("creado");
                 $scope.listarProveedores();
+                $scope.nuevoprov.nombre.$modelValue = '';
+                $scope.nuevoprov.$setPristine();
+                $scope.nuevoprov.$setUntouched();
             });
 
+        }
+
+        $scope.proveedorSelectBorrar = '';
+        
+        $scope.confirmarBorrarProveedor = function(idProv) {
+            $scope.proveedorSelectBorrar = idProv;
         }
 
         $scope.borrarProveedor = function(idProv) {
             $http.delete($rootScope.config.service_url+'/proveedores/'+idProv)
             .success(function(res){
-                console.log("creado");
+                console.log("borrado");
+                $scope.proveedorSelectBorrar = '';
                 $scope.listarProveedores();
+                $('#modalBorrar').modal('hide');
             });
 
         }
