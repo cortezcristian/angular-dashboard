@@ -10,6 +10,7 @@
  */
 angular
   .module('angularDashboardApp', [
+    'toaster',
     'ngAnimate',
     'ngCookies',
     'ngResource',

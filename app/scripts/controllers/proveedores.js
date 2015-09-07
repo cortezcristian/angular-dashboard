@@ -8,7 +8,8 @@
  * Controller of the angularDashboardApp
  */
 angular.module('angularDashboardApp')
-  .controller('ProveedoresCtrl', function($scope, $http, $rootScope, Proveedores){
+  .controller('ProveedoresCtrl', function($scope, 
+            $http, $rootScope, Proveedores, toaster){
         console.log("cargo proveedores controller");
         $scope.proveedores = [];
 
@@ -18,7 +19,7 @@ angular.module('angularDashboardApp')
                 nombre: prov.nombre.$modelValue
             }; 
             Proveedores.crear(dataProv).then(function(res){
-                console.log("creado");
+                toaster.pop('success', "Alta", "El proveedor fue creado con éxito");
                 $scope.listarProveedores();
             });
 
