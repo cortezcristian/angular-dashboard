@@ -44,7 +44,7 @@ angular
       $rootScope.layout = {};
       $rootScope.layout.loading = true;
       $rootScope.config = {};
-      $rootScope.config.service_url = 'http://localhost:9001/';
+      $rootScope.config.service_url = 'http://localhost:9001';
       $rootScope.config.base_url = '';
       $rootScope.config.base_url += $location.protocol()+'://';
       $rootScope.config.base_url += $location.host();

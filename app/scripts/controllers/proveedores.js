@@ -8,11 +8,21 @@
  * Controller of the angularDashboardApp
  */
 angular.module('angularDashboardApp')
-  .controller('ProveedoresCtrl', function($scope, $http){
+  .controller('ProveedoresCtrl', function($scope, $http, $rootScope, Proveedores){
         console.log("cargo proveedores controller");
         $scope.proveedores = [];
 
         $scope.cargarProveedores = function(prov) {
+
+            var dataProv = {
+                nombre: prov.nombre.$modelValue
+            }; 
+            Proveedores.crear(dataProv).then(function(res){
+                console.log("creado");
+                $scope.listarProveedores();
+            });
+
+            /*
             $http.post($rootScope.config.service_url+'/proveedores', {
                 nombre: prov.nombre.$modelValue
             })
@@ -20,7 +30,15 @@ angular.module('angularDashboardApp')
                 console.log("creado");
                 $scope.listarProveedores();
             });
+            */
 
+        }
+
+
+        $scope.idProveedorBorrar = '';
+
+        $scope.confirmarBorrarProveedor = function(idProv) {
+            $scope.idProveedorBorrar = idProv;
         }
 
         $scope.borrarProveedor = function(idProv) {
@@ -28,6 +46,7 @@ angular.module('angularDashboardApp')
             .success(function(res){
                 console.log("creado");
                 $scope.listarProveedores();
+                $('#myModal').modal('hide');
             });
 
         }
