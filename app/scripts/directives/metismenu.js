@@ -11,7 +11,7 @@ angular.module('angularDashboardApp')
     return {
       restrict: 'AE',
       link: function postLink(scope, element, attrs) {
-        $(element).metisMenu();
+        element.metisMenu();
       }
     };
   });
